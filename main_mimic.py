@@ -1,6 +1,6 @@
 import argparse
 import torch
-from graphleak import graphleak_mimic
+from fpgia import graphleak_mimic
 from sklearn.metrics import roc_auc_score
 from model import  MLP_mimic,TransformerEncoder_mimic,weights_init
 from torch.utils.data import DataLoader
