@@ -1,6 +1,6 @@
 import argparse
 import torch
-from step import fpgia_mimic_ours
+from fpgia import fpgia_mimic_ours
 from sklearn.metrics import roc_auc_score
 from model import MLP_mimic, TransformerEncoder_mimic, weights_init
 from torch.utils.data import DataLoader
