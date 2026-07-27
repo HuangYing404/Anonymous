@@ -28,8 +28,7 @@
 ## config
 ```bash
     --model :the model you try to attack (mlp, transformer)
-    --matrix-normalize :wheather to use graph Loss
+    --presence-obj :wheather to use presence Loss
     --w1 （--w2） :the coefficient of graph loss
-    --scale  :the scale of knowledge graph (5%, 10%, 20%, 50%, 100%)
     --tag   :weather to use TAG Loss
  ```
