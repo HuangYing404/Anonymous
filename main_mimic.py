@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from utils import MimicDataset
 
 
-parser = argparse.ArgumentParser(description='GrapgDLG on MIMIC-III Dataset')
+parser = argparse.ArgumentParser(description='MIMIC-III Dataset')
 parser.add_argument('--model', type=str, default="mlp",
                     help='the model used for training.')
 parser.add_argument('--embedding-size', type=int, default="64",
