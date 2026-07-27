@@ -1,6 +1,3 @@
-# Introduction
-Code for GraphLeak:Patient Record Leakage through Gradients with
-Knowledge Graph (under review in WWW-Web4Good)
 
 # data prepare
  ```bash
