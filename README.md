@@ -32,3 +32,16 @@
     --w1 （--w2） :the coefficient of graph loss
     --tag   :weather to use TAG Loss
  ```
+
+
+## Dataset Availability
+
+This project uses two publicly available electronic health record datasets:
+
+- MIMIC-III Clinical Database:
+  https://physionet.org/content/mimiciii/1.4/
+
+- eICU Collaborative Research Database:
+  https://physionet.org/content/eicu-crd/2.0/
+
+Due to data access restrictions and privacy considerations, the original datasets are not included in this repository. Researchers interested in reproducing the experiments should request access from the official providers and comply with the corresponding data use agreements.
