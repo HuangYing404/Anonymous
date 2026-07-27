@@ -7,7 +7,7 @@ from model import MLP_eicu,TransformerEncoder_eicu,weights_init
 from fpgia import graphleak_eicu
 from sklearn.metrics import roc_auc_score
 
-parser = argparse.ArgumentParser(description='GrapgDLG on eICU Dataset')
+parser = argparse.ArgumentParser(description='eICU Dataset')
 parser.add_argument('--model', type=str, default="transformer",
                     help='the model used for training.')
 parser.add_argument('--embedding-size', type=int, default="5",
