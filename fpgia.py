@@ -125,3 +125,105 @@ def graphleak_eicu(dummy_disc_data,
             current_loss = closure()
             print(str(iters)+' iters Loss:', "%.4f" % current_loss.item())
     return dummy_disc_data,dummy_cont_data,dummy_label
+
+
+def extract_full_size_matrix(input_tensor):
+    input_tensor = (input_tensor > 0).int()
+    F = input_tensor.shape[1]
+
+    feature_present = input_tensor.any(dim=0)
+    selected = torch.where(feature_present)[0]
+
+    if len(selected) == 0:
+        return torch.zeros((F, F), dtype=torch.int, device=input_tensor.device)
+
+    reduced = input_tensor[:, selected]
+
+    cooccur_reduced = (reduced.float().T @ reduced.float()) > 0
+    cooccur_reduced = cooccur_reduced.int()
+
+    cooccur_full = torch.zeros((F, F), dtype=torch.int, device=input_tensor.device)
+    cooccur_full[selected[:, None], selected] = cooccur_reduced
+
+    return cooccur_full
+
+def fpgia_mimic_ours(
+    dummy_diagnose_multihot,
+    dummy_procedure_multihot,
+    dummy_medicine_multihot,
+    original_dy_dx,
+    optimizer,
+    net,
+    criterion,
+    args):
+
+    input_matrix = torch.zeros(128, DIAG_NUM + PROC_NUM, dtype=torch.float32).to(device)
+
+    flag = True
+    for gy in original_dy_dx:
+        if flag:
+            # print(gy.shape)
+            input_matrix = gy
+        flag = False
+
+
+    print(input_matrix.shape)
+
+
+    first_part = input_matrix[:, :1958]  
+    second_part = input_matrix[:, 1958:] 
+
+    diag_matrix = extract_full_size_matrix(first_part).float()
+    proc_matrix = extract_full_size_matrix(second_part).float()
+
+    diag_matrix /= diag_matrix.sum()
+    proc_matrix /= proc_matrix.sum()
+
+    print(f"First part: {first_part.shape} -> {diag_matrix.shape} ")
+    print(f"Second part: {second_part.shape} -> {proc_matrix.shape} ")
+
+
+    for iters in range(30000):
+        def closure():
+            optimizer.zero_grad()
+            dummy_diagnose = torch.sigmoid(dummy_diagnose_multihot)
+            dummy_procedure = torch.sigmoid(dummy_procedure_multihot)
+            dummy_medicine = torch.sigmoid(dummy_medicine_multihot)
+
+            dummy_pred = net(dummy_diagnose, dummy_procedure)
+            dummy_loss = criterion(dummy_pred, dummy_medicine)
+            dummy_dy_dx = torch.autograd.grad(
+                dummy_loss, net.parameters(), create_graph=True)
+
+            grad_diff = 0
+            # DLG loss
+            for gx, gy in zip(dummy_dy_dx, original_dy_dx):
+                grad_diff += ((gx - gy) ** 2).sum()
+
+                # print("aaaaa",grad_diff)
+                # TAG loss
+                if args.tag_loss:
+                    tag_loss = torch.abs(gx - gy).sum()
+
+                    # print(tag_loss)
+                    grad_diff += args.wt * tag_loss
+
+            # presence loss
+            if args.presence_obj:
+                loss_diag1 = (dummy_diagnose @ diag_matrix @ dummy_diagnose.T).sum()
+                loss_proc1 = (dummy_procedure @ proc_matrix @ dummy_procedure.T).sum()
+
+            grad_diff.backward()
+            return grad_diff
+
+        optimizer.step(closure)
+        if iters % 5000 == 0:
+            current_loss = closure()
+            print(str(iters)+' iters Loss:', "%.4f" % current_loss.item())
+
+    return dummy_diagnose_multihot, dummy_procedure_multihot, dummy_medicine_multihot
+
+
+
+
+
