@@ -11,6 +11,12 @@
     conda activate FPGIA
     pip install -r requirements
  ```
+
+## MIMIC-III demo
+ ```bash
+    python main.py --model mlp --batch-size 32  --w1 1e-5 --w2 1e-5 --presence-obj
+ ```
+
 ## eICU demo
  ```bash
     python main_eicu.py --model mlp --batch-size 32  --w1 1e-5 --scale 5
