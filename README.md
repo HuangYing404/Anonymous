@@ -12,16 +12,16 @@
     pip install -r requirements
  ```
 
-## MIMIC-III demo
+## MIMIC-III ours
  ```bash
     python main.py --model mlp --batch-size 32  --w1 1e-5 --w2 1e-5 --presence-obj
  ```
 
-## eICU demo
+## eICU baseline
  ```bash
     python main_eicu.py --model mlp --batch-size 32  --w1 1e-5 --scale 5
  ```
-## MIMIC-III demo
+## MIMIC-III baseline
  ```bash
     python main_mimic.py --model mlp --batch-size 32  --w1 1e-5 --w2 1e-5 --scale 5
  ```
