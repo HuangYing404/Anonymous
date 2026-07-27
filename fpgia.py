@@ -210,8 +210,10 @@ def fpgia_mimic_ours(
 
             # presence loss
             if args.presence_obj:
-                loss_diag1 = (dummy_diagnose @ diag_matrix @ dummy_diagnose.T).sum()
-                loss_proc1 = (dummy_procedure @ proc_matrix @ dummy_procedure.T).sum()
+                loss_diag = (dummy_diagnose @ diag_matrix @ dummy_diagnose.T).sum()
+                loss_proc = (dummy_procedure @ proc_matrix @ dummy_procedure.T).sum()
+
+                grad_diff = grad_diff - args.w1 * loss_diag - args.w2 * loss_proc
 
             grad_diff.backward()
             return grad_diff
