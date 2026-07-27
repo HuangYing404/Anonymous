@@ -13,11 +13,11 @@
  ```
 ## eICU demo
  ```bash
-    python main_eicu.py --model mlp --batch-size 32 --matrix-normalize --w1 1e-5 --scale 5
+    python main_eicu.py --model mlp --batch-size 32  --w1 1e-5 --scale 5
  ```
 ## MIMIC-III demo
  ```bash
-    python main_mimic.py --model mlp --batch-size 32 --matrix-normalize --w1 1e-5 --w2 1e-5 --scale 5
+    python main_mimic.py --model mlp --batch-size 32  --w1 1e-5 --w2 1e-5 --scale 5
  ```
 ## config
 ```bash
