@@ -29,7 +29,7 @@
 ```bash
     --model :the model you try to attack (mlp, transformer)
     --presence-obj :wheather to use presence Loss
-    --w1 （--w2） :the coefficient of graph loss
+    --w1 （--w2） :the coefficient of loss
     --tag   :weather to use TAG Loss
  ```
 
