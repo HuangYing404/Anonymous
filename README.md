@@ -6,9 +6,9 @@
  ```
 
 # enviroment set up
- ```bash
-    conda create -n graphleak python==3.9
-    conda activate graphleak
+ ```bashFPGIA
+    conda create -n FPGIA python==3.9
+    conda activate FPGIA
     pip install -r requirements
  ```
 ## eICU demo
