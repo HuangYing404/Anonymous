@@ -4,7 +4,7 @@ import argparse
 from utils import EicuDataset
 from torch.utils.data import DataLoader
 from model import MLP_eicu,TransformerEncoder_eicu,weights_init
-from graphleak import graphleak_eicu
+from fpgia import graphleak_eicu
 from sklearn.metrics import roc_auc_score
 
 parser = argparse.ArgumentParser(description='GrapgDLG on eICU Dataset')
