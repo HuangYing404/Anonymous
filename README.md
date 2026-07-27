@@ -2,7 +2,7 @@
 # data prepare
  ```bash
     cat data* > data.tar
-    tar xzvf data.tar
+    tar xvf data.tar
  ```
 
 # enviroment set up
