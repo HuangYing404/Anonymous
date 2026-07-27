@@ -1,8 +1,8 @@
 
 # data prepare
  ```bash
-    cat data* > data.tar.gz
-    tar xzvf data.tar.gz
+    cat data* > data.tar
+    tar xzvf data.tar
  ```
 
 # enviroment set up
