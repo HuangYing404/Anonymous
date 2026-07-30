@@ -1,6 +1,6 @@
 import argparse
 import torch
-from fpgia import fpgia_mimic_ours
+from spot import spot_mimic_ours
 from sklearn.metrics import roc_auc_score
 from model import MLP_mimic, TransformerEncoder_mimic, weights_init
 from torch.utils.data import DataLoader
@@ -108,7 +108,7 @@ for i, data in enumerate(train_loader):
 
 
 
-    dummy_diag_pred, dummy_proc_pred, dummy_med_pred = fpgia_mimic_ours(dummy_diagnose_multihot,
+    dummy_diag_pred, dummy_proc_pred, dummy_med_pred = spot_mimic_ours(dummy_diagnose_multihot,
                                                                                dummy_procedure_multihot,
                                                                                dummy_medicine_multihot,
                                                                                original_dy_dx, optimizer,
