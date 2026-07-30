@@ -166,6 +166,15 @@ def spot_mimic_ours(
             input_matrix = gy
         flag = False
 
+    # flag = True
+    # cc = 0
+    # for gy in original_dy_dx:
+    #    if cc > 1 and flag:
+    #        input_matrix = gy
+    #    cc += 1
+    #    if cc > 2:
+    #        flag = False
+
 
     print(input_matrix.shape)
 
