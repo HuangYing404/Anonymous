@@ -165,7 +165,8 @@ def spot_mimic_ours(
             # print(gy.shape)
             input_matrix = gy
         flag = False
-
+        
+    # this is for transformer
     # flag = True
     # cc = 0
     # for gy in original_dy_dx:
