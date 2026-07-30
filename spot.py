@@ -147,7 +147,7 @@ def extract_full_size_matrix(input_tensor):
 
     return cooccur_full
 
-def fpgia_mimic_ours(
+def spot_mimic_ours(
     dummy_diagnose_multihot,
     dummy_procedure_multihot,
     dummy_medicine_multihot,
