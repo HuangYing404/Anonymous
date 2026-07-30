@@ -6,9 +6,9 @@
  ```
 
 # enviroment set up
- ```bashFPGIA
-    conda create -n FPGIA python==3.9
-    conda activate FPGIA
+ ```bash SPOT
+    conda create -n SPOT python==3.9
+    conda activate SPOT
     pip install -r requirements
  ```
 
